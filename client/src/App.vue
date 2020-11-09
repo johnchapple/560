@@ -1,31 +1,43 @@
 <template>
   <div
     id="app"
-    class="bg-white justify-center max-h-screen overflow-y-auto"
+    class="bg-white justify-center overflow-y-auto"
   >
-    <div class="text-gray-800 p-1 max-w-4xl mx-auto">
+    <div class="text-gray-800 p-1 min-h-screen max-w-6xl mx-auto">
       <div class="text-4xl my-4">
-        <img class="inline mr-3" width="64px" src="nutshell.png" />
-        <h1 class="inline">In A Nutshell</h1>
+        <h1 class="inline p-2">560 Restaurant Manager</h1>
       </div>
-      <Cycle class="mb-8" v-for="cycle in cycles" :cycle="cycle" :key="cycle.date" />
-      <div v-if="loading" class="loader mx-auto" />
-      <button v-if="!getDisabled && !loading" class="text-4xl flex mx-auto hover:text-gray-600" @click="getSummaries"><refresh-cw-icon size="1x" class="my-auto py-auto mr-3" />Give me recent news!</button>
+      <div v-if="$store.user" class="flex">
+        <div class="bg-gray-200 p-3 border-gray-400 border rounded" style="width: 66%;">
+          Welcome, [NAME]. Your role is [MANAGER || EMPLOYEE].
+        </div>
+        <div class="bg-white p-3" style="width: 33%;" >
+          <h2 class="text-blue-800 text-2xl text-center">Bulletin Board</h2>
+          <BulletinPost class="mb-2" v-for="post in Posts" :bulletinPost="post" :key="post.id" />
+        </div>
+      </div>
+      <div v-else class="flex justify-center height-100">
+        <Login />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import cycles from '../../example.json'
-import Cycle from './Cycle.vue'
 import { RefreshCwIcon } from 'vue-feather-icons'
+import BulletinPost from './BulletinPost'
+import Login from './Login'
 
 export default {
   name: 'App',
-  components: { Cycle, RefreshCwIcon },
+  components: { RefreshCwIcon, BulletinPost, Login },
   data() {
     return {
-      cycles: cycles,
+      Posts: [
+        { id: 0, text: "Hello, and welcome to working at this company. It's going to be really awful scrubbing dishes, and you're getting less than minimum wage.", employeeId: 6 },
+        { id: 1, text: "Due to the pandemic, we're closing. You've lost your jobs.", employeeId: 6 },
+        { id: 2, text: "Okay, we're re-opening and you're also getting benefits!", employeeId: 6 },
+      ],
       getDisabled: false,
       loading: false,
     }
