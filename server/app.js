@@ -4,6 +4,7 @@
 const express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , bulletin = require('./routes/bulletin')
   , http = require('http')
   , path = require('path');
 //const methodOverride = require('method-override');
@@ -15,11 +16,16 @@ let bodyParser=require("body-parser");
 let connection = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
-              password : '',
-              database : 'test'
+              password : 'password',
+              database : 'restaurant',
+              port : 3306,
+              insecureAuth : true
             });
  
-connection.connect();
+connection.connect((err) => {
+    if (err) throw err;
+    console.log('Connected!');
+  });
  
 global.db = connection;
  
@@ -50,5 +56,6 @@ app.post('/login', user.login);//call for login post
 app.get('/home/dashboard', user.dashboard);//call for dashboard page after login
 app.get('/home/logout', user.logout);//call for logout
 app.get('/home/profile',user.profile);//to render users profile
+app.get('/bulletin', bulletin.post);
 //Middleware
 app.listen(4000)

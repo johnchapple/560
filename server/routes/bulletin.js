@@ -12,10 +12,13 @@ exports.post = function(req, res){
     });
   }
   if(req.method == "GET"){
+    /*
     var sql = "SELECT * FROM BulletinPost"
 
     var query = db.query(sql, function(err, result) {
       res.json(result)
     });
+    */
+    res.send({message: 'hello'})
   }
  };
