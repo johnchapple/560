@@ -5,11 +5,13 @@ const express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , bulletin = require('./routes/bulletin')
+  , employees = require('./routes/employees')
   , http = require('http')
   , path = require('path');
 //const methodOverride = require('method-override');
 // const session = require('express-session');
 const app = express();
+const cors = require('cors');
 const mysql = require('mysql');
 let bodyParser=require("body-parser");
 
@@ -36,6 +38,7 @@ app.set('port', process.env.PORT || 4000);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'))
+app.use(cors())
 
 // app.use(express.static(path.join(__dirname, 'public')));
 /*
@@ -56,6 +59,9 @@ app.post('/login', user.login);//call for login post
 app.get('/home/dashboard', user.dashboard);//call for dashboard page after login
 app.get('/home/logout', user.logout);//call for logout
 app.get('/home/profile',user.profile);//to render users profile
+
+app.get('/employees', employees.all);
 app.get('/bulletin', bulletin.post);
+
 //Middleware
 app.listen(4000)
