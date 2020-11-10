@@ -8,10 +8,11 @@
         <h1 class="inline p-2">560 Restaurant Manager</h1>
       </div>
       <div v-if="$store.user" class="flex">
-        <div class="bg-gray-200 p-3 border-gray-400 border rounded" style="width: 66%;">
-          Welcome, [NAME]. Your role is [MANAGER || EMPLOYEE].
+        <div class="bg-gray-200 p-3 border-gray-400 border rounded shadow-xl" style="width: 66%;">
+          <p class="mb-2">Welcome, [NAME]. Your role is [MANAGER || EMPLOYEE].</p>
+          <Employees />
         </div>
-        <div class="bg-white p-3" style="width: 33%;" >
+        <div class="bg-white p-3 shadow-xl" style="width: 33%;" >
           <h2 class="text-blue-800 text-2xl text-center">Bulletin Board</h2>
           <BulletinPost class="mb-2" v-for="post in Posts" :bulletinPost="post" :key="post.id" />
         </div>
@@ -27,10 +28,11 @@
 import { RefreshCwIcon } from 'vue-feather-icons'
 import BulletinPost from './BulletinPost'
 import Login from './Login'
+import Employees from './Employees'
 
 export default {
   name: 'App',
-  components: { RefreshCwIcon, BulletinPost, Login },
+  components: { RefreshCwIcon, BulletinPost, Login, Employees },
   data() {
     return {
       Posts: [
