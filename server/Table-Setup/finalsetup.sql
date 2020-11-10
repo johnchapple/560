@@ -25,9 +25,11 @@ CREATE TABLE IF NOT EXISTS `Resturaunt`.`Employees` (
 CREATE TABLE IF NOT EXISTS `Resturaunt`.`EmployeeAccount` (
   `EmployeeAccountID` INT NOT NULL,
   `EmployeeID` INT NOT NULL,
-  `UserName` CHAR(50) NOT NULL,
-  `PassWOrd` CHAR(128) NOT NULL,
+  `UserName` VARCHAR(64) NOT NULL,
+  `PassWord` VARCHAR(64) NOT NULL,
   `Admin` BIT(1) NOT NULL,
+  `Email` VARCHAR(64) NOT NULL,
+  `PhoneNum` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`EmployeeAccountID`),
   INDEX `EmployeeID_idx` (`EmployeeID` ASC) VISIBLE,
   CONSTRAINT `EmployeeID`
