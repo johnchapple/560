@@ -1,21 +1,40 @@
 <template>
   <div class="text-left bg-gray-200 border border-gray-400 rounded">
     <p class="flex p-2 mx-auto w-100 justify-between border-b-2 border-gray-400">
-      {{ bulletinPost.text }}
+      {{ bulletinPost.Text }}
     </p>
-    <p class="text-gray-700 p-2">posted by {{ bulletinPost.employeeId }}</p>
+    <p class="text-gray-700 p-2 flex justify-between">
+      <span>posted by <strong>{{ $store.employees.find(e => bulletinPost.EmployeeID === e.EmployeeID).FirstName }}</strong></span>
+      <button @click="deleteBulletin()" v-if="$store.user.EmployeeID === bulletinPost.EmployeeID"><trash-icon /></button>
+    </p>
   </div>
 </template>
 
 <script>
+import { TrashIcon } from 'vue-feather-icons'
+import axios from 'axios'
 
 export default {
   name: 'BulletinPost',
+  components: { TrashIcon },
+  created() {
+    console.log(this.$store.user.EmployeeID, this.bulletinPost.employeeId)
+  },
   props: {
     bulletinPost: {
       type: Object,
       required: true,
     }
+  },
+  methods: {
+    deleteBulletin() {
+      console.log('1', this.bulletinPost)
+      console.log('2', this.bulletinPost.BulletinPostID)
+      axios.post('/deleteBulletinPosts', { BulletinPostID: this.bulletinPost.BulletinPostID})
+        .then(() => {
+          this.$store.bulletinPosts = this.$store.bulletinPosts.filter(p => p.BulletinPostID != this.bulletinPost.BulletinPostID)
+        })
+    },
   }
 }
 </script>

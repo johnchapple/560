@@ -6,6 +6,8 @@ const express = require('express')
   , user = require('./routes/user')
   , bulletin = require('./routes/bulletin')
   , employees = require('./routes/employees')
+  , employeeAccount = require('./routes/employeeAccount')
+  , roles = require('./routes/roles')
   , http = require('http')
   , path = require('path');
 //const methodOverride = require('method-override');
@@ -52,16 +54,23 @@ app.use(session({
 // development only
  
 app.get('/', routes.index);//call for main index page
-app.get('/signup', user.signup);//call for signup page
-app.post('/signup', user.signup);//call for signup post 
-app.get('/login', routes.index);//call for login page
-app.post('/login', user.login);//call for login post
 app.get('/home/dashboard', user.dashboard);//call for dashboard page after login
 app.get('/home/logout', user.logout);//call for logout
 app.get('/home/profile',user.profile);//to render users profile
 
 app.get('/employees', employees.all);
-app.get('/bulletin', bulletin.post);
+app.get('/bulletinPosts', bulletin.all);
+app.get('/employeeAccounts', employeeAccount.all);
+
+app.post('/bulletinPosts', bulletin.post);
+app.delete('/bulletinPosts', bulletin.delete);
+app.post('/deleteBulletinPosts', bulletin.delete)
+
+app.get('/roles', roles.all);
+app.post('/roles', roles.new);
+
+app.get('/signup', employeeAccount.signup);//call for signup page
+app.post('/login', employeeAccount.login);
 
 //Middleware
 app.listen(4000)

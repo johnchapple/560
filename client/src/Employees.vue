@@ -1,9 +1,16 @@
 <template>
   <div>
-    <div class="border border-gray-400 rounded">
-      <div class="p-1 bg-white border-b border-gray-400" v-for="e in employees" :key="e.id">
-        <p class="flex"><user-icon size="1x" class="mr-2" />{{ e.FirstName }} {{ e.LastName }}</p>
-        <p>Joined on {{ e.JoinedDate }}</p>
+    <div class="border border-gray-400 bg-white rounded">
+      <p class="text-xl ml-2 mt-2">Employees</p>
+      <div class="p-1 bg-white border-b border-gray-400" v-for="e in $store.employees" :key="e.id">
+        <p class="flex justify-between">
+          <span class="flex">
+            <user-icon size="1x" class="mr-2" />
+            {{ e.FirstName }} {{ e.LastName }}
+          </span>
+          {{ $store.roles.find(r => r.RoleID === e.RoleID).RoleName }}
+        </p>
+        <p>Joined on {{ parseDate(e.JoinedDate) }}, <span class="text-gray-400">{{ formatDistanceDate(e.JoinedDate) }}</span></p>
       </div>
     </div>
   </div>
@@ -11,12 +18,15 @@
 
 <script>
 import { UserIcon } from 'vue-feather-icons'
+import { format, formatDistance } from 'date-fns'
 
 export default {
   name: 'Employees',
   components: { UserIcon },
-  created() {
-    this.getEmployees()
+  computed: {
+    roleName(eId) {
+      return this.$store.roles.find(r => r.RoleID === eId).RoleName
+    }
   },
   data() {
     return {
@@ -26,6 +36,12 @@ export default {
     }
   },
   methods: {
+    parseDate(date) {
+      return format(new Date(date), 'PPP')
+    },
+    formatDistanceDate(date) {
+      return formatDistance(new Date(date), new Date(), { addSuffix: true })
+    },
     getEmployees() {
       this.loading = true;
       const Http = new XMLHttpRequest();
@@ -34,7 +50,7 @@ export default {
       Http.send();
 
       Http.onreadystatechange = (e) => {
-        this.employees = JSON.parse(Http.responseText)
+        this.$store.employees = JSON.parse(Http.responseText)
         this.getDisabled = true
         this.loading = false
       }

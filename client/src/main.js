@@ -5,7 +5,7 @@ import App from './App.vue'
 
 import store from './store'
 
-axios.defaults.baseURL = '/api'
+// axios.defaults.baseURL = '/api'
 
 Vue.prototype.$store = store
 
