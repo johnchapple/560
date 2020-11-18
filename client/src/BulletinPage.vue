@@ -14,6 +14,11 @@ import BulletinPost from './Components/BulletinPost.vue'
 
 export default {
   name: 'BulletinPage',
+  data() {
+    return {
+      newPost: '',
+    }
+  },
   components: {
     BulletinPost
   }
