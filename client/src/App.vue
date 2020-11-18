@@ -8,16 +8,16 @@
         <img class="mx-auto" src="logo.png" />
       </div>
       <div class="bg-gray-100 flex justify-between border border-gray-400 rounded p-2 mb-4">
-        <router-link class="text-xl hover:text-blue-600" to='/bulletin'>
+        <router-link class="text-xl hover:text-blue-700 border-b-2 border-transparent text-blue-900" :class="{'border-blue-800': $route.path === '/bulletin' }" to='/bulletin'>
           Bulletin
         </router-link>
-        <router-link class="text-xl hover:text-blue-600" to='/employees'>
+        <router-link class="text-xl hover:text-blue-700 border-b-2 border-transparent text-blue-900" :class="{'border-blue-800': $route.path === '/employees' }" to='/employees'>
           Employees
         </router-link>
-        <router-link class="text-xl hover:text-blue-600" to='/roles'>
+        <router-link class="text-xl hover:text-blue-700 border-b-2 border-transparent text-blue-900" :class="{'border-blue-800': $route.path === '/roles' }" to='/roles'>
           Roles
         </router-link>
-        <router-link class="text-xl hover:text-blue-600" to='/reports'>
+        <router-link class="text-xl hover:text-blue-700 border-b-2 border-transparent text-blue-900" :class="{'border-blue-800': $route.path === '/reports' }" to='/reports'>
           Reports
         </router-link>
       </div>
@@ -73,14 +73,6 @@ export default {
     getPosts() {
       axios.get('/bulletinPosts').then(res => { this.$store.bulletinPosts = res.data })
     },
-    addBulletin() {
-      console.log('here', this.$store.user)
-      axios.post('/bulletinPosts', { Text: this.newPost, Employeeid: this.$store.user.EmployeeID })
-      .then(res => {
-        this.$store.bulletinPosts.push(res.data[0])
-      })
-    },
-
   }
 }
 </script>

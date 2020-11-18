@@ -21,6 +21,15 @@ export default {
   },
   components: {
     BulletinPost
+  },
+  methods: {
+    addBulletin() {
+      console.log('here', this.$store.user)
+      axios.post('/bulletinPosts', { Text: this.newPost, Employeeid: this.$store.user.EmployeeID })
+      .then(res => {
+        this.$store.bulletinPosts.push(res.data[0])
+      })
+    },
   }
 }
 </script>
