@@ -5,6 +5,7 @@ import App from './App.vue'
 import Login from './Login.vue'
 import EmployeeList from './EmployeeList.vue'
 import BulletinPage from './BulletinPage.vue'
+import RolePage from './RolePage.vue'
 import axios from 'axios'
 
 import store from './store'
@@ -15,10 +16,18 @@ Vue.prototype.$store = store
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
+const authGuard = async(to, from, next) => {
+  if (!store.user) return next('/login')
+
+  next()
+}
+
+
 const routes = [
   { path: '/', component: Login },
-  { path: '/employees', name: "Employees", component: EmployeeList },
-  { path: '/bulletin', name: 'Bulletin', component: BulletinPage },
+  { path: '/roles', beforeEnter: authGuard, component: RolePage },
+  { path: '/employees', beforeEnter: authGuard, name: "Employees", component: EmployeeList },
+  { path: '/bulletin', beforeEnter: authGuard, name: 'Bulletin', component: BulletinPage },
   { path: '*', redirect: '/' },
 ]
 
