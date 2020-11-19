@@ -60,6 +60,8 @@ app.get('/home/logout', user.logout);//call for logout
 app.get('/home/profile',user.profile);//to render users profile
 
 app.get('/employees', employees.all);
+app.patch('/employee/:id', employees.patch)
+
 app.get('/bulletinPosts', bulletin.all);
 app.get('/employeeAccounts', employeeAccount.all);
 

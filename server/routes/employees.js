@@ -15,3 +15,11 @@ exports.all = function(req, res){
       */
     }
    };
+
+exports.patch = function(req, res) {
+  var sql = `UPDATE restaurant.employees SET RoleID = ${req.body.RoleID} WHERE EmployeeID = ${req.params.id}`
+
+  var query = db.query(sql, function(err, result) {
+    res.json(result)
+  });
+}

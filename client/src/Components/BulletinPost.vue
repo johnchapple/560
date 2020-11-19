@@ -4,7 +4,7 @@
       {{ bulletinPost.Text }}
     </p>
     <p class="text-gray-700 p-2 flex justify-between">
-      <span>posted by <strong>{{ $store.employees.find(e => bulletinPost.EmployeeID === e.EmployeeID).FirstName }}</strong></span>
+      <span>posted by <strong>{{ $store.employees.find(e => bulletinPost.EmployeeID === e.EmployeeID).FirstName }}</strong> {{ distance(bulletinPost.Created) }}</span>
       <button @click="deleteBulletin()" v-if="$store.user.EmployeeID === bulletinPost.EmployeeID"><trash-icon /></button>
     </p>
   </div>
@@ -13,6 +13,7 @@
 <script>
 import { TrashIcon } from 'vue-feather-icons'
 import axios from 'axios'
+import { formatDistance } from 'date-fns'
 
 export default {
   name: 'BulletinPost',
@@ -35,6 +36,9 @@ export default {
           this.$store.bulletinPosts = this.$store.bulletinPosts.filter(p => p.BulletinPostID != this.bulletinPost.BulletinPostID)
         })
     },
+    distance(date) {
+      return formatDistance(new Date(date), new Date(), { addSuffix: true })
+    }
   }
 }
 </script>
