@@ -21,11 +21,11 @@ let bodyParser=require("body-parser");
 let connection = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
-              password : 'password',
+              password : 'sigmas10',
               database : 'restaurant',
               port : 3306,
               insecureAuth : true
-            });
+});
  
 connection.connect((err) => {
     if (err) throw err;
@@ -70,6 +70,9 @@ app.delete('/bulletinPosts', bulletin.delete);
 app.post('/deleteBulletinPosts', bulletin.delete)
 
 app.get('/reports', reports.all);
+app.get('/reports/monthly', reports.monthly);
+app.get('/reports/topitems', reports.bestSelling);
+app.get('/reports/monthlySales', reports.monthlySales)
 
 app.get('/roles', roles.all);
 app.post('/roles', roles.new);
