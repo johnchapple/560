@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `restaurant`.`BulletinPost` (
 
 /**Create BulletinComment Table**/
 CREATE TABLE IF NOT EXISTS `restaurant`.`BulletinComment` (
-  `BulletinCommentID` INT NOT NULL,
+  `BulletinCommentID` INT AUTO_INCREMENT NOT NULL,
   `BulletinPostID` INT NOT NULL,
   `EmployeeID` INT NOT NULL,
   `Text` VARCHAR(255) NOT NULL,
