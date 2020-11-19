@@ -20,7 +20,7 @@ loadMap(Highcharts);
 export default {
   components: {
     Highcharts: createHighcharts('Highcharts', Highcharts),
-    Highmaps: createHighcharts('Highmaps', Highcharts),
+    // Highmaps: createHighcharts('Highmaps', Highcharts),
     // Highstock: createHighcharts('Highstock', Highcharts),
     // HighchartsGantt: createHighcharts('HighchartsGantt', Highcharts),
   },
