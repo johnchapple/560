@@ -3,7 +3,7 @@ exports.post = function(req, res){
     var Text = req.body.Text;
     var EmployeeID = req.body.EmployeeID
 
-    var sql = "INSERT INTO `BulletinPost`(`Text`,`EmployeeId`) VALUES ('" + Text + "','" + EmployeeID + "')";
+    var sql = "INSERT INTO `BulletinPost`(`Text`,`EmployeeID`) VALUES ('" + Text + "','" + EmployeeID + "')";
     console.log(sql)
 
     let insertId = null

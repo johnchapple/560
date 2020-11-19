@@ -6,7 +6,7 @@
         v-if="$store.employees.find(e => $store.user.EmployeeID === e.EmployeeID).RoleID === 1"
         class="block w-full text-left bg-white border border-gray-400 rounded text-gray-700 p-2 mb-2"
         @click="createNew = true">
-        New Bulletin Post</button>
+        + New Bulletin Post</button>
       <BulletinSummary class="mb-2" v-for="post in $store.bulletinPosts" :selectPost="selectPost" :bulletinPost="post" :key="post.BulletinPostID" />
     </div>
     <div v-if="!createNew" class="block border border-gray-400 rounded bg-gray-100 p-3 shadow-xl" style="width: 66%">
@@ -58,7 +58,7 @@ export default {
   methods: {
     addBulletin() {
       console.log('here', this.$store.user)
-      axios.post('/bulletinPosts', { Text: this.newPost, Employeeid: this.$store.user.EmployeeID })
+      axios.post('/bulletinPosts', { Text: this.newPost, EmployeeID: this.$store.user.EmployeeID })
       .then(res => {
         this.$store.bulletinPosts.push(res.data[0])
       })
@@ -70,6 +70,7 @@ export default {
       })
     },
     selectPost(id) {
+      this.createNew = false
       this.selectedPost = id
     }
   }
