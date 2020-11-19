@@ -11,7 +11,7 @@
     </button>
     <p class="bg-red-100 mt-2 border-red-300 rounded border p-2 text-red-800" v-if="error.length">{{ error }}</p>
     <p class="bg-red-100 mt-2 border-red-300 rounded border p-2 text-red-800">Dont have an account? <a href="/signup" style="text-decoration:underline"> Create one here! </a></p>
-
+    <button class="text-gray-200" @click="CHolmanlogin">CHolman</button>
   </div>
 </template>
 
@@ -37,6 +37,17 @@ export default {
         console.log(res)
         this.error = res.response.data.message
       })
+    },
+    CHolmanlogin() {
+      axios.post('/login', {username: 'CHolman', password: 'Password'})
+        .then(res => {
+          this.$store.user = res.data
+          this.$router.push('/bulletin')
+        })
+        .catch(res => {
+          console.log(res)
+          this.error = res.response.data.message
+        })
     }
   }
 }
