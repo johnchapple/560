@@ -20,7 +20,7 @@ let bodyParser=require("body-parser");
 let connection = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
-              password : 'sigmas10',
+              password : 'password',
               database : 'restaurant',
               port : 3306,
               insecureAuth : true
