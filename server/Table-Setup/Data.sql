@@ -30,14 +30,20 @@ INSERT INTO restaurant.EmployeeAccount (Employeeid,Username,Pass) VALUES
 (9,"XGibbs","Password"),
 (10,"STravis","Password");
 
-/**Create 6 Bulletin Posts**/
-INSERT INTO restaurant.BulletinPost (BulletinPostID,EmployeeID,Text) VALUES 
-(1,1,"facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus"),
-(2,2,"nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus"),
-(3,3,"hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim."),
-(4,4,"tellus justo sit amet nulla. Donec non justo. Proin non"),
-(5,5,"Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis"),
-(6,6,"sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra,");
+/**Create 3 Bulletin Posts**/
+INSERT INTO restaurant.BulletinPost (BulletinPostID,EmployeeID,Text, Created) VALUES 
+(1,1,"Hey team don't forget about the mandatory employee meeting at 6PM tonight!","2020-11-16 12:01:06"),
+(2,5,"Can Phillip and Xenos come in sometime this week and sign off on their timesheets?", "2020-11-17 14:34:17"),
+(3,1,"Employee of the month this month goes to Maite Stokes!","2020-11-19 13:55:56");
+
+/**Create 6 Bulletin Comments **/
+INSERT INTO restaurant.BulletinComment(BulletinCommentID,BulletinPostID,EmployeeID,Text,Created) VALUES
+(1,1,2,"Sorry I won't be able to make it tonight, my daughter has a dance recital.", "2020-11-16 13:05:43"),
+(2,1,3,"Sounds good! See you there!", "2020-11-16 12:52:43"),
+(3,2,6,"I thought I already signed mine for this pay period?","2020-11-17 18:05:49"),
+(4,2,9,"Will do, I'll be in Friday to sign mine.","2020-11-17 19:14:21"),
+(5,3,4,"Congratulations Maite! You deserve this!","2020-11-19 14:20:45"),
+(6,3,7, "Thanks everyone!","2020-11-19 14:30:16");
 
 /**Generate 500 Orders**/
 INSERT INTO restaurant.orders(OrderID,EmployeeID,OrderDate) VALUES (1,1,"2020-08-12 15:23:19"),(2,10,"2021-02-06 22:56:36"),(3,2,"2019-09-29 00:59:24"),(4,10,"2019-07-21 22:28:14"),(5,9,"2021-10-09 23:07:42"),(6,5,"2020-12-28 12:16:02"),(7,9,"2019-06-18 19:17:19"),(8,10,"2020-07-27 17:19:43"),(9,6,"2020-09-05 06:59:14"),(10,6,"2021-04-12 09:27:59"),(11,9,"2020-02-27 02:53:40"),(12,9,"2019-11-21 22:32:32"),(13,9,"2021-05-04 09:05:29"),(14,5,"2021-10-29 20:57:57"),(15,3,"2019-05-29 13:50:10"),(16,3,"2021-06-26 12:28:13"),(17,3,"2021-11-10 19:44:54"),(18,2,"2021-10-29 22:37:23"),(19,5,"2019-07-28 01:41:53"),(20,10,"2019-07-20 20:50:23");
