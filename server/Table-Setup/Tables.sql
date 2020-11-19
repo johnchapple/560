@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `restaurant`.`Roles`;
 CREATE TABLE IF NOT EXISTS `restaurant`.`Roles` (
   `RoleID` INT NOT NULL,
   `RoleName` VARCHAR(50) NOT NULL,
-  `PayRate` VARCHAR(45) NOT NULL,
+  `PayRate` DECIMAL(5,2) NOT NULL,
   PRIMARY KEY (`RoleID`),
   UNIQUE INDEX `RoleName_UNIQUE` (`RoleName` ASC) VISIBLE);
 
@@ -59,14 +59,15 @@ CREATE TABLE IF NOT EXISTS `restaurant`.`BulletinPost` (
 /**Create BulletinComment Table**/
 CREATE TABLE IF NOT EXISTS `restaurant`.`BulletinComment` (
   `BulletinCommentID` INT NOT NULL,
+  `BulletinPostID` INT NOT NULL,
   `EmployeeID` INT NOT NULL,
   `Text` VARCHAR(255) NOT NULL,
   `Created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`BulletinCommentID`),
   INDEX `EmployeeID_idx` (`EmployeeID` ASC) VISIBLE,
-  CONSTRAINT `CommentEmployeeID`
-    FOREIGN KEY (`EmployeeID`)
-    REFERENCES `restaurant`.`BulletinPost` (`EmployeeID`));
+  CONSTRAINT `BulletinPostID`
+    FOREIGN KEY (`BulletinPostID`)
+    REFERENCES `restaurant`.`BulletinPost` (`BulletinPostID`));
 
 /**Create Orders Table**/
 CREATE TABLE IF NOT EXISTS `restaurant`.`Orders` (

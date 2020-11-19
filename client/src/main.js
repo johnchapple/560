@@ -12,6 +12,7 @@ import BulletinPage from './BulletinPage.vue'
 import RolePage from './RolePage.vue'
 import axios from 'axios'
 import ReportPage from './ReportPage.vue'
+import EmployeeSummary from './EmployeeSummary.vue'
 
 import store from './store'
 
@@ -37,6 +38,7 @@ const routes = [
   { path: '/roles', beforeEnter: authGuard, component: RolePage },
   { path: '/signup', component: Signup},
   { path: '/employees', beforeEnter: authGuard, name: "Employees", component: EmployeeList },
+  { path: '/employee/:id', beforeEnter: authGuard, component: EmployeeSummary },
   { path: '/bulletin', beforeEnter: authGuard, name: 'Bulletin', component: BulletinPage },
   { path: '/reports', name: 'Reports', component: ReportPage },
 

@@ -8,9 +8,11 @@
             <user-icon size="1x" class="mr-2" />
             {{ e.FirstName }} {{ e.LastName }}
           </span>
+          <router-link :to="`/employee/${e.EmployeeID}`">View Summary</router-link>
+        </p>
+        <p>
           {{ $store.roles.find(r => r.RoleID === e.RoleID).RoleName }}
         </p>
-        <p>Joined on {{ parseDate(e.JoinedDate) }}, <span class="text-gray-400">{{ formatDistanceDate(e.JoinedDate) }}</span></p>
       </div>
     </div>
   </div>
