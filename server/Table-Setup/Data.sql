@@ -1,10 +1,10 @@
-/** Insert Data **/
+//**Creating 2 Roles**//
 INSERT INTO restaurant.Roles(RoleID, RoleName, PayRate) 
 VALUES (1, 'Manager', 50);
 INSERT INTO restaurant.Roles(RoleID, RoleName, PayRate) 
 VALUES (0, 'Employee', 50);
 
-//** Here the Managers are Claudia, and Randall **/
+//**Creating 10 Employees, 1 & 5 Are Managers**/
 INSERT INTO restaurant.Employees (Employeeid,FirstName,LastName,Email,PhoneNumber,Roleid,JoinedDate) VALUES 
 (1,"Claudia","Holman","CHolman@gmail.com","912-455-7153",1,"2017-06-24 16:30:32"),
 (2,"Kirestin","Beach","KBeach@gmail.com","703-874-9693",0,"2017-04-08 23:41:51"),
@@ -17,6 +17,7 @@ INSERT INTO restaurant.Employees (Employeeid,FirstName,LastName,Email,PhoneNumbe
 (9,"Xenos","Gibbs","XGibbs@gmail.com","815-929-2887",0,"2021-09-07 18:11:29"),
 (10,"Shafira","Travis","STravis@gmail.com","503-275-7905",0,"2020-01-09 21:12:23");
 
+//**Creating 10 Employee Accounts**//
 INSERT INTO restaurant.EmployeeAccount (Employeeid,Username,Pass) VALUES
 (1,"CHolman","Password"),
 (2,"KBeach","Password"),
@@ -29,6 +30,7 @@ INSERT INTO restaurant.EmployeeAccount (Employeeid,Username,Pass) VALUES
 (9,"XGibbs","Password"),
 (10,"STravis","Password");
 
+//**Create 6 Bulletin Posts**//
 INSERT INTO restaurant.BulletinPost (BulletinPostID,EmployeeID,Text) VALUES 
 (1,1,"facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus"),
 (2,2,"nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus"),
@@ -37,7 +39,7 @@ INSERT INTO restaurant.BulletinPost (BulletinPostID,EmployeeID,Text) VALUES
 (5,5,"Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis"),
 (6,6,"sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra,");
 
-/**Generate 500 Orders**/
+//**Generate 500 Orders**//
 INSERT INTO restaurant.orders(OrderID,EmployeeID,OrderDate) VALUES (1,1,"2020-08-12 15:23:19"),(2,10,"2021-02-06 22:56:36"),(3,2,"2019-09-29 00:59:24"),(4,10,"2019-07-21 22:28:14"),(5,9,"2021-10-09 23:07:42"),(6,5,"2020-12-28 12:16:02"),(7,9,"2019-06-18 19:17:19"),(8,10,"2020-07-27 17:19:43"),(9,6,"2020-09-05 06:59:14"),(10,6,"2021-04-12 09:27:59"),(11,9,"2020-02-27 02:53:40"),(12,9,"2019-11-21 22:32:32"),(13,9,"2021-05-04 09:05:29"),(14,5,"2021-10-29 20:57:57"),(15,3,"2019-05-29 13:50:10"),(16,3,"2021-06-26 12:28:13"),(17,3,"2021-11-10 19:44:54"),(18,2,"2021-10-29 22:37:23"),(19,5,"2019-07-28 01:41:53"),(20,10,"2019-07-20 20:50:23");
 INSERT INTO restaurant.orders(OrderID,EmployeeID,OrderDate) VALUES (21,9,"2019-06-30 08:09:55"),(22,6,"2019-05-16 09:14:04"),(23,9,"2021-10-30 05:28:15"),(24,8,"2020-06-30 14:59:59"),(25,6,"2021-07-04 14:41:31"),(26,4,"2019-11-07 00:00:29"),(27,1,"2021-09-02 12:58:51"),(28,9,"2021-03-09 11:28:17"),(29,2,"2019-02-24 08:10:29"),(30,2,"2019-10-06 17:45:15"),(31,2,"2021-08-19 04:35:56"),(32,9,"2019-10-31 21:54:13"),(33,4,"2019-07-30 11:43:39"),(34,9,"2020-01-15 18:06:12"),(35,3,"2019-12-08 07:26:45"),(36,6,"2021-03-27 22:38:52"),(37,10,"2021-01-11 03:02:34"),(38,3,"2019-03-16 14:00:21"),(39,6,"2020-05-08 18:26:12"),(40,9,"2019-05-07 03:31:40");
 INSERT INTO restaurant.orders(OrderID,EmployeeID,OrderDate) VALUES (41,5,"2019-02-05 00:14:28"),(42,6,"2019-09-29 14:54:09"),(43,5,"2020-01-03 07:31:31"),(44,5,"2020-11-17 02:31:00"),(45,9,"2019-09-07 13:47:37"),(46,10,"2021-07-04 11:39:42"),(47,4,"2020-08-22 20:42:27"),(48,6,"2021-10-31 19:18:56"),(49,2,"2020-09-27 09:01:28"),(50,3,"2020-05-29 04:15:24"),(51,7,"2021-05-04 13:25:03"),(52,3,"2021-06-15 10:09:38"),(53,7,"2019-07-27 20:44:25"),(54,2,"2021-04-24 22:18:35"),(55,4,"2021-10-03 16:19:44"),(56,2,"2019-04-06 22:01:54"),(57,3,"2019-09-26 18:43:25"),(58,1,"2021-04-27 04:49:26"),(59,4,"2019-03-17 16:57:30"),(60,6,"2020-12-13 01:18:15");
@@ -64,14 +66,14 @@ INSERT INTO restaurant.orders(OrderID,EmployeeID,OrderDate) VALUES (441,6,"2019-
 INSERT INTO restaurant.orders(OrderID,EmployeeID,OrderDate) VALUES (461,10,"2019-05-10 05:43:28"),(462,9,"2019-05-13 02:41:13"),(463,4,"2020-03-04 21:54:50"),(464,9,"2020-04-30 11:46:45"),(465,8,"2019-04-05 07:05:39"),(466,3,"2020-08-15 07:11:33"),(467,5,"2021-01-07 07:17:20"),(468,6,"2020-09-20 09:05:52"),(469,6,"2019-05-21 12:58:49"),(470,4,"2020-07-20 18:44:19"),(471,10,"2020-08-21 22:16:29"),(472,1,"2021-07-21 02:08:19"),(473,4,"2019-10-10 16:36:30"),(474,3,"2019-03-04 05:16:28"),(475,4,"2019-10-26 03:02:29"),(476,10,"2020-10-15 02:48:47"),(477,1,"2020-02-01 15:42:13"),(478,9,"2019-02-11 00:33:54"),(479,9,"2020-10-11 02:19:24"),(480,6,"2021-06-29 11:44:51");
 INSERT INTO restaurant.orders(OrderID,EmployeeID,OrderDate) VALUES (481,3,"2019-01-10 22:03:56"),(482,3,"2020-05-10 12:26:19"),(483,10,"2020-02-12 02:43:01"),(484,10,"2021-04-15 02:52:23"),(485,4,"2020-05-28 12:54:17"),(486,3,"2019-05-10 01:27:10"),(487,5,"2021-03-28 11:29:08"),(488,6,"2020-10-09 20:38:35"),(489,8,"2020-09-28 00:15:42"),(490,5,"2021-02-27 10:22:28"),(491,8,"2021-06-22 01:14:00"),(492,5,"2021-01-03 21:54:07"),(493,7,"2021-04-15 17:43:10"),(494,5,"2019-05-26 12:18:14"),(495,6,"2019-11-21 13:39:26"),(496,9,"2021-01-02 00:05:10"),(497,1,"2021-05-22 08:59:40"),(498,5,"2020-08-31 04:10:22"),(499,10,"2021-10-16 10:23:30"),(500,4,"2019-06-21 09:01:35");
 
-/**Generate 5 Menu Items**/
+//**Generate 5 Menu Items**//
 INSERT INTO restaurant.menuitem(MenuItemID, Name) VALUES (1, 'Beef Wellington');
 INSERT INTO restaurant.menuitem(MenuItemID, Name) VALUES (2, 'Scallops');
 INSERT INTO restaurant.menuitem(MenuItemID, Name) VALUES (3, 'Caviar');
 INSERT INTO restaurant.menuitem(MenuItemID, Name) VALUES (4, 'Ravioli');
 INSERT INTO restaurant.menuitem(MenuItemID, Name) VALUES (5, 'Ratatouille');
 
-/**Generate 500 Purchased Menu Items**/
+//**Generate 500 Purchased Menu Items**//
 INSERT INTO purchasedmenuitem (PurchasedMenuItemID,MenuItemID,OrderID,PurchasedPrice) VALUES (1,4,1,"53.63"),(2,2,2,"82.85"),(3,5,3,"42.29"),(4,2,4,"98.31"),(5,5,5,"91.25"),(6,2,6,"40.38"),(7,1,7,"1.37"),(8,5,8,"26.26"),(9,5,9,"16.53"),(10,3,10,"61.49"),(11,4,11,"36.93"),(12,3,12,"29.46"),(13,2,13,"11.97"),(14,2,14,"91.77"),(15,1,15,"69.72"),(16,5,16,"39.33"),(17,1,17,"29.23"),(18,2,18,"92.50"),(19,1,19,"43.55"),(20,4,20,"35.09");
 INSERT INTO purchasedmenuitem (PurchasedMenuItemID,MenuItemID,OrderID,PurchasedPrice) VALUES (21,1,21,"74.34"),(22,3,22,"0.63"),(23,4,23,"6.66"),(24,3,24,"56.17"),(25,4,25,"92.15"),(26,4,26,"61.72"),(27,1,27,"23.72"),(28,3,28,"66.27"),(29,3,29,"58.08"),(30,2,30,"92.60"),(31,2,31,"2.95"),(32,2,32,"37.53"),(33,1,33,"24.56"),(34,3,34,"60.77"),(35,1,35,"26.49"),(36,3,36,"94.09"),(37,5,37,"10.88"),(38,1,38,"24.14"),(39,1,39,"35.10"),(40,5,40,"81.29");
 INSERT INTO purchasedmenuitem (PurchasedMenuItemID,MenuItemID,OrderID,PurchasedPrice) VALUES (41,1,41,"37.25"),(42,2,42,"67.65"),(43,5,43,"22.48"),(44,1,44,"89.87"),(45,5,45,"15.26"),(46,3,46,"39.59"),(47,2,47,"19.57"),(48,3,48,"66.88"),(49,2,49,"72.49"),(50,1,50,"47.46"),(51,2,51,"73.15"),(52,1,52,"47.75"),(53,5,53,"98.11"),(54,2,54,"82.52"),(55,2,55,"10.22"),(56,4,56,"82.40"),(57,5,57,"7.37"),(58,5,58,"41.16"),(59,1,59,"72.50"),(60,3,60,"55.73");
