@@ -44,6 +44,7 @@ export default {
     this.getEmployeeAccounts()
     this.getRoles()
     this.getPosts()
+    this.getComments()
   },
   data() {
     return {
@@ -73,6 +74,9 @@ export default {
     getPosts() {
       axios.get('/bulletinPosts').then(res => { this.$store.bulletinPosts = res.data })
     },
+    getComments() {
+      axios.get('/bulletinComments').then(res => { this.$store.bulletinComments = res.data })
+    }
   }
 }
 </script>

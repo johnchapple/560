@@ -6,6 +6,7 @@ const store = Vue.observable({
   employeeAccounts: [],
   roles: [],
   bulletinPosts: [],
+  bulletinComments: [],
 })
 
 setInterval(() => { store.referenceDate = new Date() }, 1000)
