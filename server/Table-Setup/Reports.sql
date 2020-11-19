@@ -21,7 +21,8 @@ FROM restaurant.purchasedmenuitem
 JOIN restaurant.menuitem ON restaurant.purchasedmenuitem.MenuItemID = restaurant.menuitem.MenuItemID
 JOIN restaurant.orders ON restaurant.purchasedmenuitem.OrderID = restaurant.orders.OrderID
 WHERE MONTH(restaurant.orders.OrderDate) = MONTH(NOW()) AND YEAR(restaurant.orders.OrderDate) = YEAR(NOW())
-GROUP BY restaurant.purchasedmenuitem.MenuItemID 
+GROUP BY restaurant.purchasedmenuitem.MenuItemID
+ORDER BY NumOrdered DESC
 
 /**Forecast For Next Month's Inventory Ordering Using THis Month's Sold Items**/
 SELECT restaurant.menuitem.name AS ItemName, COUNT(restaurant.purchasedmenuitem.MenuItemID) AS NumOrdered, ROUND(COUNT(restaurant.purchasedmenuitem.MenuItemID) * 1.5) AS Forecast
