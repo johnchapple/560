@@ -6,13 +6,19 @@
 	<!-- <pre> -->
 	<div>
 		<!-- <div id="alex" style="height: 400px; background-color: black;"></div> -->
-		<div id="barchart" style="height: 400px; background-color: black;"></div>
+		<div id="barchart" style="height: 400px; background-color:#D3D3D3;"></div>
+		<br>
 		<hr />
 		<br>
-		<div id="topItemBarChart" style="height: 400px; background-color: black;"></div>
+		<div id="topItemBarChart" style="height: 400px; background-color:#D3D3D3;"></div>
+		<br>
 		<hr />
 		<br>
-		<div id="totalmonthlysales" style="height: 400px; background-color: black;"></div>
+		<div id="forecast" style="height: 400px; background-color:#D3D3D3;"></div>
+		<br>
+		<hr />
+		<br>
+		<div id="totalmonthlysales" style="height: 400px; background-color:#D3D3D3;"></div>
 
 	</div>
 </template>
@@ -36,6 +42,7 @@
   			this.getMonthlyReport();
   			this.getTopItems();
   			this.getTotalMonthlySales();
+  			this.getForecast();
   		},
   		methods: {
   			createLineChart(data,name,title,startPoint){
@@ -50,16 +57,23 @@
                 			}            
            				 }
         			},
-
 				    xAxis: {
 				        type: 'datetime'
+				    },
+				    tooltip: {
+				        valueSuffix: "$"
 				    },
 
 				    plotOptions: {
 				        series: {
 				            pointStart: Date.UTC(2020, 0, 1),
 				            pointIntervalUnit: 'month'
-				        }
+				        },
+				        line: {
+					        dataLabels: {
+					            enabled: true
+					        }
+					    }
 				    },
 				    series: [data]
 				});
@@ -100,7 +114,6 @@
 				        }
 				    },
 				    series: data
-				    
 				});
   			},
   			getMonthlyReport(){
@@ -108,43 +121,59 @@
   					.then(res => {
   						var data = res.data;
   						var arr = {};
-  						var el = [];
+  						var els = [];
   						var values = [];
   						for(var i = 0; i < res.data.length; i++){
-  								el.push({name:data[i]['EmployeeName'], data: [parseInt(data[i]['TotalSales'])]});
+  								els.push({name:data[i]['EmployeeName'], data: [parseInt(data[i]['TotalSales'])]});
   						}
-  						this.createBarChart(el,barchart,"Total Sales by Employees This Year","dollars","Dollars (USD)","Employees");
+  						this.createBarChart(els,barchart,"Total Sales by Employees This Year","dollars","Dollars (USD)","Employees");
   					})
   			},
   			getTopItems(){
   			  	axios.get('/reports/topitems',{points:this.points,startPeriod:this.startPeriod,interval:this.interval})
-  					.then(res => {
-  					var data = res.data;
-  					var arr = {};
-  					var el = [];
-  					var values = [];
-  					for(var i = 0; i < res.data.length; i++){
-  							el.push({name:data[i]['ItemName'], data: [parseInt(data[i]['NumOrdered'])]});
-  					}
-  					this.createBarChart(el,topItemBarChart,"Top Items Sold this Month", "items","Menu Items","Menu Items");
-  				})	
-  			},
-  			getTotalMonthlySales(){
-  				  axios.get('/reports/monthlySales',{points:this.points,startPeriod:this.startPeriod,interval:this.interval})
-  					.then(res => {
-  					var data = res.data;
-  					var arr = {};
-  					var el = [];
+				.then(res => {
+					var data = res.data;
+					var arr = {};
+					var els = [];
+					var values = [];
+					for(var i = 0; i < res.data.length; i++){
+							els.push({name:data[i]['ItemName'], data: [parseInt(data[i]['NumOrdered'])]});
+					}
+					// var date = new Date();
 
-  					for(var i = 0; i < res.data.length; i++){
-  						el.push(res.data[i]['TotalMonthlySales']);
-  					}
-  					// console.log(el);
-  					arr = {"data":el};
-  					console.log(arr);
-  					this.createLineChart(arr,totalmonthlysales,"Total Monthly Sales",1);
+					this.createBarChart(els,topItemBarChart,"Top Items Sold this Month", "items","Menu Items","Menu Items");
+	  			})	
+  			}, 
+  			getTotalMonthlySales(){
+  				axios.get('/reports/monthlySales',{points:this.points,startPeriod:this.startPeriod,interval:this.interval})
+				.then(res => {
+					var data = res.data;
+					var arr = {};
+					var els = [];
+
+					for(var i = 0; i < res.data.length; i++){
+						els.push(res.data[i]['TotalMonthlySales']);
+					}
+					// console.log(el);
+					arr = {"data":els};
+					console.log(arr);
+					this.createLineChart(arr,totalmonthlysales,"Total Monthly Sales For 2020",1);
 
   				})
+  			},
+  			getForecast(){
+  				axios.get('/reports/forecast', {points:this.points,startPeriod:this.startPeriod,interval:this.interval})
+				.then(res => {
+					var data = res.data;
+					var arr = {};
+					var els = [];
+					var values = [];
+					for(var i = 0; i < res.data.length; i++){
+							els.push({name:data[i]['ItemName'], data: [parseInt(data[i]['Forecast'])]});
+					}
+
+					this.createBarChart(els,forecast,"Next Month's Forecast for Items Sold", "items","Menu Items","Menu Items");
+	  			})	
   			}
   		}
 	}

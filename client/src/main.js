@@ -40,7 +40,7 @@ const routes = [
   { path: '/employees', beforeEnter: authGuard, name: "Employees", component: EmployeeList },
   { path: '/employee/:id', beforeEnter: authGuard, component: EmployeeSummary },
   { path: '/bulletin', beforeEnter: authGuard, name: 'Bulletin', component: BulletinPage },
-  { path: '/reports', name: 'Reports', component: ReportPage },
+  { path: '/reports', beforeEnter: authGuard, name: 'Reports', component: ReportPage },
 
   { path: '*', redirect: '/' },
 ]

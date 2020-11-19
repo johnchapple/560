@@ -83,3 +83,22 @@ ORDER BY MONTH(restaurant.orders.OrderDate) ASC`;
     }   
   };
 
+
+  exports.forecast = function(req, res){
+          if(req.method == "GET"){
+      var sql = `SELECT restaurant.menuitem.name AS ItemName, COUNT(restaurant.purchasedmenuitem.MenuItemID) AS NumOrdered, ROUND(COUNT(restaurant.purchasedmenuitem.MenuItemID) * 1.5) AS Forecast
+FROM restaurant.purchasedmenuitem
+JOIN restaurant.menuitem ON restaurant.purchasedmenuitem.MenuItemID = restaurant.menuitem.MenuItemID
+JOIN restaurant.orders ON restaurant.purchasedmenuitem.OrderID = restaurant.orders.OrderID
+WHERE MONTH(restaurant.orders.OrderDate) = MONTH(NOW()) AND YEAR(restaurant.orders.OrderDate) = YEAR(NOW())
+GROUP BY restaurant.purchasedmenuitem.MenuItemID
+ORDER BY Forecast DESC`;
+
+
+      var query = db.query(sql, function(err, result) {
+        res.send(result)
+      });
+
+    }
+  }
+

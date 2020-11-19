@@ -72,7 +72,9 @@ app.post('/deleteBulletinPosts', bulletin.delete)
 app.get('/reports', reports.all);
 app.get('/reports/monthly', reports.monthly);
 app.get('/reports/topitems', reports.bestSelling);
-app.get('/reports/monthlySales', reports.monthlySales)
+app.get('/reports/monthlySales', reports.monthlySales);
+app.get('/reports/forecast', reports.forecast);
+
 
 app.get('/roles', roles.all);
 app.post('/roles', roles.new);
