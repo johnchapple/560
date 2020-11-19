@@ -7,7 +7,7 @@
       <input v-model="lastname" class="w-full block rounded border-2 p-1" type="text" name="lastName" max="32" />
     </label>
     <label class="text-gray-800 text-xl mb-2 w-full" for="username">Username
-      <input v-model="username"  class="w-full block rounded border-2 p-1" type="text" name="username" max="32" />
+      <input v-model="username" class="w-full block rounded border-2 p-1" type="text" name="username" max="32" />
     </label>
     <label class="text-gray-800 text-xl w-full" for="password">Password
       <input v-model="password" class="w-full block rounded border-2 p-1" type="password" name="password" max="32" />

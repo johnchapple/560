@@ -8,6 +8,7 @@ const express = require('express')
   , employees = require('./routes/employees')
   , employeeAccount = require('./routes/employeeAccount')
   , roles = require('./routes/roles')
+  , reports = require('./routes/reports')
   , http = require('http')
   , path = require('path');
 //const methodOverride = require('method-override');
@@ -65,6 +66,8 @@ app.get('/employeeAccounts', employeeAccount.all);
 app.post('/bulletinPosts', bulletin.post);
 app.delete('/bulletinPosts', bulletin.delete);
 app.post('/deleteBulletinPosts', bulletin.delete)
+
+app.get('/reports', reports.all);
 
 app.get('/roles', roles.all);
 app.post('/roles', roles.new);

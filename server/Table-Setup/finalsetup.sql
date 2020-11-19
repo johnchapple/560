@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `restaurant`.`BulletinComment` (
 /**Orders**/
 
 CREATE TABLE IF NOT EXISTS `restaurant`.`Orders` (
-  `OrderID` INT NOT NULL,
+  `OrderID` INT NOT NULL AUTO_INCREMENT,
   `EmployeeID` INT NOT NULL,
   `OrderDate` DATETIME NOT NULL,
   PRIMARY KEY (`OrderID`),

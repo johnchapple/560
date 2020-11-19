@@ -11,6 +11,7 @@
 
 <script>
 import BulletinPost from './Components/BulletinPost.vue'
+import axios from 'axios'
 
 export default {
   name: 'BulletinPage',
