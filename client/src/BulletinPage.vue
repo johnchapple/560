@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex justify-between">
     <div class="block border border-gray-400 rounded bg-gray-100 p-3 shadow-xl" style="width: 33%">
       <h2 class="text-blue-800 text-2xl text-center">Bulletin Board</h2>
       <button
