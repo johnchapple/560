@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import App from './App.vue'
 import Login from './Login.vue'
+import Signup from './Signup.vue'
 import EmployeeList from './EmployeeList.vue'
 import BulletinPage from './BulletinPage.vue'
 import RolePage from './RolePage.vue'
@@ -26,6 +27,7 @@ const authGuard = async(to, from, next) => {
 const routes = [
   { path: '/', component: Login },
   { path: '/roles', beforeEnter: authGuard, component: RolePage },
+  { path : '/signup', component: Signup},
   { path: '/employees', beforeEnter: authGuard, name: "Employees", component: EmployeeList },
   { path: '/bulletin', beforeEnter: authGuard, name: 'Bulletin', component: BulletinPage },
   { path: '*', redirect: '/' },

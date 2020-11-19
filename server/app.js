@@ -20,7 +20,7 @@ let bodyParser=require("body-parser");
 let connection = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
-              password : 'password',
+              password : 'sigmas10',
               database : 'restaurant',
               port : 3306,
               insecureAuth : true
@@ -69,7 +69,9 @@ app.post('/deleteBulletinPosts', bulletin.delete)
 app.get('/roles', roles.all);
 app.post('/roles', roles.new);
 
-app.get('/signup', employeeAccount.signup);//call for signup page
+// app.get('/signup', employeeAccount.signup);//call for signup page
+app.post('/signup', employeeAccount.signup);
+
 app.post('/login', employeeAccount.login);
 
 //Middleware

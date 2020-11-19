@@ -19,13 +19,13 @@ CREATE TABLE IF NOT EXISTS `restaurant`.`Roles` (
 /** Employees **/
 
 CREATE TABLE IF NOT EXISTS `restaurant`.`Employees` (
-  `EmployeeID` INT NOT NULL,
+  `EmployeeID` INT NOT NULL AUTO_INCREMENT,
   `FirstName` CHAR(50) NOT NULL,
   `LastName` CHAR(50) NOT NULL,
   `Email` VARCHAR(64) NOT NULL,
   `PhoneNumber` VARCHAR(30) NOT NULL,
-  `JoinedDate` DATETIME NOT NULL,
-  `RoleID` INT NOT NULL,
+  `JoinedDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `RoleID` INT NOT NULL DEFAULT(0),
   PRIMARY KEY (`EmployeeID`),
   INDEX `RoleID_idx` (`RoleID` ASC) VISIBLE,
   CONSTRAINT `RoleID`
