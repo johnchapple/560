@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `restaurant`.`Roles`;
 CREATE TABLE IF NOT EXISTS `restaurant`.`Roles` (
   `RoleID` INT NOT NULL,
   `RoleName` VARCHAR(50) NOT NULL,
-  `PayRate` VARCHAR(45) NOT NULL,
+  `PayRate` DECIMAL(5,2) NOT NULL,
   PRIMARY KEY (`RoleID`),
   UNIQUE INDEX `RoleName_UNIQUE` (`RoleName` ASC) VISIBLE);
 
