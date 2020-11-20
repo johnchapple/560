@@ -19,6 +19,10 @@
 		<hr />
 		<br>
 		<div id="totalmonthlysales" style="height: 400px; background-color:#D3D3D3;"></div>
+		<br>
+		<hr />
+		<br>
+		<div id="mostitems" style="height: 400px; background-color:#D3D3D3;"></div>
 
 	</div>
 </template>
@@ -43,9 +47,10 @@
   			this.getTopItems();
   			this.getTotalMonthlySales();
   			this.getForecast();
+  			this.getMostItemsSold();
   		},
   		methods: {
-  			createLineChart(data,name,title,startPoint){
+  			createLineChart(data,name,title,suf){
 			    Highcharts.chart(name, {		
 				    title: {
 				        text: title //Employee Yearly Sales //Employee Monthly Sales //Top Performers
@@ -61,7 +66,7 @@
 				        type: 'datetime'
 				    },
 				    tooltip: {
-				        valueSuffix: "$"
+				        valueSuffix: " " +suf
 				    },
 
 				    plotOptions: {
@@ -154,9 +159,8 @@
 					for(var i = 0; i < res.data.length; i++){
 						els.push(res.data[i]['TotalMonthlySales']);
 					}
-					// console.log(el);
-					arr = {"data":els};
-					console.log(arr);
+
+					arr = {data:els};
 					this.createLineChart(arr,totalmonthlysales,"Total Monthly Sales For 2020",1);
 
   				})
@@ -174,6 +178,21 @@
 
 					this.createBarChart(els,forecast,"Next Month's Forecast for Items Sold", "items","Menu Items","Menu Items");
 	  			})	
+  			},
+  			getMostItemsSold(){
+  				axios.get('/reports/itemssold', {points:this.points,startPeriod:this.startPeriod,interval:this.interval})
+				.then(res => {
+					var data = res.data;
+					var arr = {};
+					var els = [];
+					for(var i = 0; i < res.data.length; i++){
+						els.push(res.data[i]['NumOrdered']);
+					}
+
+					arr = {data:els};
+					this.createLineChart(arr,mostitems,"Total Items Sold Each Month in 2020",1);
+
+  				})
   			}
   		}
 	}

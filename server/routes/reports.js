@@ -100,5 +100,23 @@ ORDER BY Forecast DESC`;
       });
 
     }
-  }
+  };
+
+  exports.TotalItemsSold = function(req,res){
+    if(req.method == "GET"){
+      var sql = `SELECT MONTH(restaurant.orders.OrderDate) AS Month, COUNT(restaurant.menuitem.Name) AS NumOrdered
+FROM restaurant.orders
+JOIN restaurant.purchasedmenuitem ON restaurant.orders.OrderID = restaurant.purchasedmenuitem.OrderID
+JOIN restaurant.menuitem ON restaurant.purchasedmenuitem.MenuItemID = restaurant.menuitem.MenuItemID
+WHERE YEAR(restaurant.orders.OrderDate) = 2020
+GROUP BY Month(restaurant.orders.OrderDate)
+ORDER BY MONTH(restaurant.orders.OrderDate) ASC`;
+
+
+      var query = db.query(sql, function(err, result) {
+        res.send(result)
+      });
+      
+    }
+  };
 
