@@ -31,3 +31,13 @@ JOIN restaurant.menuitem ON restaurant.purchasedmenuitem.MenuItemID = restaurant
 JOIN restaurant.orders ON restaurant.purchasedmenuitem.OrderID = restaurant.orders.OrderID
 WHERE MONTH(restaurant.orders.OrderDate) = MONTH(NOW()) AND YEAR(restaurant.orders.OrderDate) = YEAR(NOW())
 GROUP BY restaurant.purchasedmenuitem.MenuItemID 
+
+
+/**/
+SELECT MONTH(restaurant.orders.OrderDate) AS Month, COUNT(restaurant.menuitem.Name) AS NumOrdered
+FROM restaurant.orders
+JOIN restaurant.purchasedmenuitem ON restaurant.orders.OrderID = restaurant.purchasedmenuitem.OrderID
+JOIN restaurant.menuitem ON restaurant.purchasedmenuitem.MenuItemID = restaurant.menuitem.MenuItemID
+WHERE YEAR(restaurant.orders.OrderDate) = 2020
+GROUP BY Month(restaurant.orders.OrderDate)
+ORDER BY MONTH(restaurant.orders.OrderDate) ASC

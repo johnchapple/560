@@ -21,7 +21,7 @@ let bodyParser=require("body-parser");
 let connection = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
-              password : 'password',
+              password : 'sigmas10',
               database : 'restaurant',
               port : 3306,
               insecureAuth : true
@@ -77,6 +77,7 @@ app.get('/reports/monthly', reports.monthly);
 app.get('/reports/topitems', reports.bestSelling);
 app.get('/reports/monthlySales', reports.monthlySales);
 app.get('/reports/forecast', reports.forecast);
+app.get('/reports/itemssold', reports.TotalItemsSold);
 
 
 app.get('/roles', roles.all);
