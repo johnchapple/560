@@ -14,7 +14,7 @@
       {{ employeePhoneNumber }}
     </p>
     <p>Joined on {{ formatDate(employeeJoinedDate) }}&nbsp;{{ distance(employeeJoinedDate) }}</p>
-    <div class="mt-5 p-3 border rounded border-gray-400 bg-white">
+    <div v-if="$store.employees.find(e => $store.user.EmployeeID === e.EmployeeID).RoleID === 1" class="mt-5 p-3 border rounded border-gray-400 bg-white">
       <p class="text-lg">Manager Actions</p>
       Set Role: 
       <select @change="changeRole()" v-model="NewRoleID">
