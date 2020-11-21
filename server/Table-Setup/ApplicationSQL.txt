@@ -1,0 +1,23 @@
+* Bulletin Posts
+
+"INSERT INTO `BulletinPost`(`Text`,`EmployeeID`) VALUES ('" + Text + "','" + EmployeeID + "')";
+`SELECT * FROM BulletinPost WHERE BulletinPostID = ${insertId}`
+"SELECT * FROM BulletinPost"
+`DELETE FROM BulletinPost WHERE BulletinPostID = ${BulletinPostID}`
+
+* Bulletin Comments
+
+"INSERT INTO `BulletinComment`(`Text`,`EmployeeId`,`BulletinPostID`) VALUES ('" + Text + "','" + EmployeeId + "','" + BulletinPostID + "')"
+"SELECT * FROM BulletinComment";
+
+* Employee Accounts
+
+`SELECT * FROM EmployeeAccount WHERE restaurant.EmployeeAccount.Username = "${username}" AND restaurant.EmployeeAccount.Pass = "${password}"`
+"INSERT INTO `Employees`(`FirstName`,`LastName`,`Email`,`PhoneNumber`) VALUES ('" + firstname + "','" + lastname + "','" + email + "','" + phonenumber + "')"
+`SELECT EmployeeID FROM Employees WHERE restaurant.Employees.email = "${email}" AND restaurant.Employees.phonenumber = "${phonenumber}"`
+"INSERT INTO `EmployeeAccount`(`EmployeeID`,`UserName`,`Pass`) VALUES ('" + empid + "','" + username + "','" + password + "')"
+
+* Employees
+
+"SELECT * FROM Employees"
+`UPDATE restaurant.employees SET RoleID = ${req.body.RoleID} WHERE EmployeeID = ${req.params.id}`

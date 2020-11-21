@@ -53,17 +53,7 @@ export default {
   },
   methods: {
     getEmployees() {
-      //axios.get('/employees').then(res => { this.$store.employees = res.data })
-      const Http = new XMLHttpRequest();
-      const url='http://localhost:4000/employees';
-      Http.open("GET", url);
-      Http.send();
-
-      Http.onreadystatechange = (e) => {
-        this.$store.employees = JSON.parse(Http.responseText)
-        this.getDisabled = true
-        this.loading = false
-      }
+      axios.get('/employees').then(res => { this.$store.employees = res.data })
     },
     getEmployeeAccounts() {
       axios.get('/employeeAccounts').then(res => { this.$store.employeeAccounts = res.data })
